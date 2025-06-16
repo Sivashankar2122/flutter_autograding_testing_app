@@ -11,13 +11,11 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
-
-      - name: Disable telemetry (optional)
-        run: flutter --disable-telemetry
+          flutter-version: '3.10.0' # Use your current version
 
       - name: Install dependencies
         run: flutter pub get
 
       - name: Run tests
         run: flutter test
+
