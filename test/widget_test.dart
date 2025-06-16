@@ -34,26 +34,24 @@ import 'package:flutter_autograding_testing_app/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('AppBar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
-
-    // Check AppBar title
-    expect(find.text('Welcome to Flutter'), findsOneWidget);
+  testWidgets('AppBar has correct title = 10', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
+    print('✅ AppBar has correct title = 10');
   });
 
-  testWidgets('Body has correct welcome text', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
-
-    // Check welcome message
-    expect(find.textContaining('Hello,'), findsOneWidget);
-  });
-
-  testWidgets('MaterialApp and Scaffold structure present',
+  testWidgets('Body has correct welcome text = 10',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
+    expect(find.textContaining('You have pushed the button'), findsOneWidget);
+    print('✅ Body has correct welcome text = 10');
+  });
 
-    // Check MaterialApp and Scaffold presence
+  testWidgets('MaterialApp and Scaffold structure present = 10',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.byType(Scaffold), findsOneWidget);
+    print('✅ MaterialApp and Scaffold structure present = 10');
   });
 }

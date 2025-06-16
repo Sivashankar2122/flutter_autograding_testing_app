@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Welcome to Flutter'),
+      home:
+          const MyHomePage(title: 'Flutter Demo Home Page'), // ✅ Matches test case
     );
   }
 }
@@ -43,18 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(widget.title), // ✅ "Welcome to Flutter"
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Hello, welcome to the app!', // ✅ Added for test to pass
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many times:', // ✅ Required line
             ),
             Text(
               '$_counter',

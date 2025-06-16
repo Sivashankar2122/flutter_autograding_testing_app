@@ -5,16 +5,28 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Set up Flutter
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.0'  # or higher if you upgrade
+          flutter-version: '3.10.0' # Use your local version
+          channel: 'stable'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run tests
-        run: flutter test
+      - name: Run Tests with Score
+        run: |
+          echo "🔍 Running Flutter tests..."
+          flutter test > test_output.txt
+          cat test_output.txt
+          
+          echo "----------------------"
+          echo "🎯 Calculating Score:"
+          SCORE=$(grep -oP '✅ .*?= \K\d+' test_output.txt | paste -sd+ - | bc || echo 0)
+          echo "Total Score: $SCORE / 30"
+          echo "----------------------"
