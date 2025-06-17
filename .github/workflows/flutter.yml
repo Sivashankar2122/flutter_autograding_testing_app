@@ -13,7 +13,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.0' # Use your local version
+          flutter-version: '3.10.0'
           channel: 'stable'
 
       - name: Install Dependencies
@@ -22,11 +22,11 @@ jobs:
       - name: Run Tests with Score
         run: |
           echo "🔍 Running Flutter tests..."
-          flutter test > test_output.txt || ture 
+          flutter test > test_output.txt || true
           cat test_output.txt
-          
+
           echo "----------------------"
           echo "🎯 Calculating Score:"
-          SCORE=$(grep -oP '✅ .*?= \K\d+' test_output.txt | paste -sd+ - | bc || echo 0)
+          SCORE=$(grep -oP '✅ .*?= \K\d+' test_output.txt | sort -u | paste -sd+ - | bc || echo 0)
           echo "Total Score: $SCORE / 30"
           echo "----------------------"
