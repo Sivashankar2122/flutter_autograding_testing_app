@@ -19,14 +19,38 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run Tests with Score
+      - name: Run Tests and Collect Score
         run: |
           echo "🔍 Running Flutter tests..."
           flutter test > test_output.txt || true
           cat test_output.txt
-
           echo "----------------------"
           echo "🎯 Calculating Score:"
           SCORE=$(grep '^✅' test_output.txt | sort -u | grep -oP '= \K\d+' | paste -sd+ - | bc || echo 0)
+          echo "SCORE=$SCORE" >> $GITHUB_ENV
+          PERCENTAGE=$(( SCORE * 100 / 30 ))
+          echo "PERCENTAGE=$PERCENTAGE" >> $GITHUB_ENV
           echo "Total Score: $SCORE / 30"
           echo "----------------------"
+
+      - name: Send Email with Score
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "✅ Flutter Auto-Grading Results"
+          body: |
+            Hello Sivashankar,
+
+            Here are your Flutter test results:
+            ----------------------
+            ✅ Total Score: ${{ env.SCORE }} / 30
+            📊 Percentage: ${{ env.PERCENTAGE }}%
+            ----------------------
+
+            Regards,  
+            Auto-Grader Bot
+          to: sivashankarg2241@gmail.com
+          from: Auto Grader <sivashankargg22@gmail.com>
