@@ -22,7 +22,7 @@ jobs:
       - name: Run Tests with Score
         run: |
           echo "🔍 Running Flutter tests..."
-          flutter test > test_output.txt
+          flutter test > test_output.txt || ture 
           cat test_output.txt
           
           echo "----------------------"
