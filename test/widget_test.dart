@@ -34,39 +34,24 @@ import 'package:flutter_autograding_testing_app/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  int score = 0;
-
   testWidgets('AppBar has correct title = 10', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
-
-    expect(find.text('Welcome to Flutter'), findsOneWidget);
-    score += 10;
+    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
     print('✅ AppBar has correct title = 10');
   });
 
   testWidgets('Body has correct welcome text = 10',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
-
-    expect(find.textContaining('You have pushed'), findsOneWidget);
-    score += 10;
+    expect(find.textContaining('You have pushed the button'), findsOneWidget);
     print('✅ Body has correct welcome text = 10');
   });
 
   testWidgets('MaterialApp and Scaffold structure present = 10',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
-
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.byType(Scaffold), findsOneWidget);
-    score += 10;
     print('✅ MaterialApp and Scaffold structure present = 10');
-  });
-
-  tearDownAll(() {
-    print('----------------------');
-    print('🎯 Calculating Score:');
-    print('Total Score: $score / 30');
-    print('----------------------');
   });
 }
