@@ -27,6 +27,6 @@ jobs:
 
           echo "----------------------"
           echo "🎯 Calculating Score:"
-          SCORE=$(grep -oP '✅ .*?= \K\d+' test_output.txt | paste -sd+ - | bc || echo 0)
+          SCORE=$(grep '^✅' test_output.txt | sort -u | grep -oP '= \K\d+' | paste -sd+ - | bc || echo 0)
           echo "Total Score: $SCORE / 30"
           echo "----------------------"
