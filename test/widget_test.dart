@@ -37,14 +37,14 @@ void main() {
   testWidgets('AppBar has correct title = 10', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
     expect(find.text('Flutter Demo Home Page'), findsOneWidget);
-    print('✅ AppBar has correct title = 10');
+    print('✅AppBar has correct title = 10');
   });
 
   testWidgets('Body has correct welcome text = 10',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
     expect(find.textContaining('You have pushed the button'), findsOneWidget);
-    print('✅ Body has correct welcome text = 10');
+    print('✅Body has correct welcome text = 10');
   });
 
   testWidgets('MaterialApp and Scaffold structure present = 10',
@@ -52,6 +52,6 @@ void main() {
     await tester.pumpWidget(const MyApp());
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.byType(Scaffold), findsOneWidget);
-    print('✅ MaterialApp and Scaffold structure present = 10');
+    print('✅MaterialApp and Scaffold structure present = 10');
   });
 }
