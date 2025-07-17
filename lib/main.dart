@@ -44,14 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title), // ✅ "Welcome to Flutter"
+        title: Text(widget.title), //✅"Welcome to Flutter"
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:', // ✅ Required line
+              'You have pushed the button this many times:', //✅Required line
             ),
             Text(
               '$_counter',
